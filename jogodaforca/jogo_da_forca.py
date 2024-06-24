@@ -1,6 +1,6 @@
 import tkinter as tk
 import random
-
+import time
 
 palavras = {
     "comidas": ["pizza", "hamburguer", "sushi", "lasanha", "churrasco", "banana", "laranja", "uva", "abacaxi", "morango",
@@ -52,7 +52,8 @@ def iniciar_jogo():
     erros = 0
     desenhar_forca(erros)
     atualizar_interface()
-    label_resultado["text"] = ""
+
+    
 
 
 def atualizar_interface():
@@ -79,7 +80,7 @@ def verificar_letra(event):
         desenhar_forca(erros)
     atualizar_interface()
     if erros == 10:
-        label_resultado.config(text="Você perdeu! A palavra era: " + palavra_secreta)
+        label_resultado["text"] = "Você perdeu! A palavra era: " + palavra_secreta
         reset_game()
     elif all(letra in letras_usadas for letra in palavra_secreta):
         label_resultado.config(text="Você ganhou!")
@@ -88,9 +89,9 @@ def verificar_letra(event):
 def reset_game():
     global letras_usadas, label_resultado, label_erros, erros
     letras_usadas = []
-    label_resultado = []
+    label_resultado["text"] = ""
     erros = 0
-  
+
 janela = tk.Tk()
 janela.title("Jogo da Forca")
 janela.configure(bg="#add8e6")
@@ -128,7 +129,7 @@ label_letras.place(x=100, y=200)
 label_erros = tk.Label(janela, font=("Arial", 16), fg="white", bg="#add8e6")
 label_erros.place(x=100, y=250)
 
-label_resultado = tk.Label(janela, font=("Arial", 28), fg="white", bg="#add8e6")
+label_resultado = tk.Label(janela,text= "",  font=("Arial", 28), fg="white", bg="#add8e6")
 label_resultado.place(x=100, y=300)
 
 
@@ -136,9 +137,11 @@ botao_iniciar = tk.Button(janela, text="Iniciar Jogo", command=iniciar_jogo, bg=
 botao_iniciar.place(x=150, y=375)
 
 
+
+
 janela.bind("<Key>", verificar_letra)
 
 
-iniciar_jogo()
+
 
 janela.mainloop()
