@@ -52,6 +52,7 @@ def iniciar_jogo():
     erros = 0
     desenhar_forca(erros)
     atualizar_interface()
+    label_resultado["text"] = ""
 
 
 def atualizar_interface():
@@ -89,7 +90,7 @@ def reset_game():
     letras_usadas = []
     label_resultado = []
     erros = 0
-
+  
 janela = tk.Tk()
 janela.title("Jogo da Forca")
 janela.configure(bg="#add8e6")
