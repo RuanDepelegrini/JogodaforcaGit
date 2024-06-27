@@ -1,6 +1,6 @@
 import tkinter as tk
 import random
-import time
+from tkinter import messagebox
 
 palavras = {
     "comidas": ["pizza", "hamburguer", "sushi", "lasanha", "churrasco", "banana", "laranja", "uva", "abacaxi", "morango",
@@ -80,10 +80,10 @@ def verificar_letra(event):
         desenhar_forca(erros)
     atualizar_interface()
     if erros == 10:
-        label_resultado["text"] = "Você perdeu! A palavra era: " + palavra_secreta
+        messagebox.showinfo("Você perdeu!", f"A palavra era: {palavra_secreta}")
         reset_game()
     elif all(letra in letras_usadas for letra in palavra_secreta):
-        label_resultado.config(text="Você ganhou!")
+        messagebox.showinfo("Você ganhou!", f"A palavra era: {palavra_secreta}")
         reset_game()
 
 def reset_game():
@@ -135,9 +135,6 @@ label_resultado.place(x=100, y=300)
 
 botao_iniciar = tk.Button(janela, text="Iniciar Jogo", command=iniciar_jogo, bg="#4169e1", fg="white", font=("Arial", 16))
 botao_iniciar.place(x=150, y=375)
-
-
-
 
 janela.bind("<Key>", verificar_letra)
 
